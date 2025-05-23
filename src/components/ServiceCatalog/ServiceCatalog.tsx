@@ -13,6 +13,7 @@ import {
 import Grid from "@mui/material/Grid";
 import { ServiceContext } from "@/ServiceContext/ServiceContext";
 import { Service } from "@/types/Service";
+import { setItem, getItem , removeItem} from "@/utils/localStorage";
 
 /* --------------------------- ejemplo de datos --------------------------- */
 const categories = [
@@ -92,12 +93,17 @@ export default function ServiceCatalog() {
       ? services
       : services.filter((s) => s.category === selectedCategory);
 
-// esto no se entiende
+// Manejamos el evento de click en el botón "Agendar servicio"
+  // Si el servicio ya está seleccionado, lo eliminamos de la lista
   const handleServiceClick = (service: Service) => {
     if (selectedServices.includes(service)) {
       setSelectedServices(selectedServices.filter((s) => s !== service));
+      // Eliminamos el servicio del localStorage
+      removeItem("selectedServices");
     } else {
       setSelectedServices([...selectedServices, service]);
+      // Guardamos el servicio seleccionado en el localStorage
+      setItem("selectedServices", [...selectedServices, service]);
     }
   }
 
@@ -157,7 +163,7 @@ export default function ServiceCatalog() {
                 </CardContent>
 
                 <Box sx={{ p: 2, pt: 0 }}>
-                  <Button variant="contained" fullWidth color="success" onClick={()=>handleServiceClick(service.id)}>
+                  <Button variant="contained" fullWidth color="success" onClick={()=>handleServiceClick(service)}>
                     Agendar servicio
                   </Button>
                 </Box>

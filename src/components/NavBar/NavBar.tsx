@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { ServiceContext } from "@/ServiceContext/ServiceContext";
-import { Service } from '@/types/Service';
+import { getItem } from "@/utils/localStorage";
 
 function NavBar() {
   const { selectedServices } = useContext(ServiceContext);
@@ -22,10 +22,31 @@ function NavBar() {
 
   const carritoHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
+    const stored = getItem("selectedServices");
+    if (typeof stored === "string") {
+      try {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) {
+          console.log(parsed.length);
+        } else {
+          console.log(0);
+        }
+      } catch {
+        console.log(0);
+      }
+    } else {
+      console.log(0);
+    }
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+  // const storedServices = 
+
+  // const storedServicesParsed =
+  //   typeof storedServices === "string"
+  //     ? JSON.parse(storedServices)
+  //     : null;
 
   return (
     <AppBar position="static">
@@ -40,7 +61,7 @@ function NavBar() {
           <Button color="inherit">Mi cuenta</Button>
         </Container>
         <Badge
-          badgeContent={selectedServices.length}
+          badgeContent={stored.length}
           color="secondary"
           onClick={carritoHandler}
           id="basic-button"
@@ -67,29 +88,61 @@ function NavBar() {
         >
           <Box
             sx={{
-              width: 500,
+              width: 450,
               padding: 2,
               marginTop: 2,
+              height: "100%",
+              overflowY: "auto",
             }}
           >
-            <Typography variant="h6" gutterBottom style={{ fontWeight: "bold" }}>
+            <Typography
+              variant="h6"
+              gutterBottom
+              style={{ fontWeight: "bold" }}
+            >
               Servicios seleccionados
             </Typography>
             {selectedServices.length > 0 ? (
               selectedServices.map((service) => (
-                <React.Fragment key={service}>
+                <React.Fragment key={service.id}>
                   <Card sx={{ marginBottom: 2, padding: 2 }}>
-                    <Typography variant="body1">hol</Typography>
-                    <Typography variant="body2">alo</Typography>
+                    <Typography variant="body1">{service.title}</Typography>
+                    <Typography variant="body2">{service.price}</Typography>
                   </Card>
-                  <Divider orientation="horizontal" sx={{ margin: "10px 0" }} flexItem />  
+                  <Divider
+                    orientation="horizontal"
+                    sx={{ margin: "10px 0" }}
+                    flexItem
+                  />
                 </React.Fragment>
               ))
             ) : (
-              <Typography variant="body1">No hay servicios seleccionados</Typography>
+              <Typography variant="body1">
+                No hay servicios seleccionados
+              </Typography>
             )}
-          </Box>
+            <Box sx={{ position: "absolute", marginTop: 2, bottom: 0, left: 0,  right: 0, padding: 5 }} >
+              <Divider orientation="horizontal" sx={{ marginBottom: 5}}   flexItem />
 
+              <Typography
+                variant="h6"
+                gutterBottom
+                style={{ fontWeight: "bold" }}
+              >
+                Total:
+              </Typography>
+              <Typography
+                variant="h6"
+                gutterBottom
+                style={{ fontWeight: "bold" }}
+              >
+                {selectedServices.reduce(
+                  (total, service) => total + service.price,
+                  0
+                )}
+              </Typography>
+            </Box>
+          </Box>
         </Drawer>
       </Toolbar>
     </AppBar>
