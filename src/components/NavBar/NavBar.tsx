@@ -12,7 +12,8 @@ import {
   Card,
 } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import { ServiceContext } from "../../ServiceContext/ServiceContext";
+import { ServiceContext } from "@/ServiceContext/ServiceContext";
+import { Service } from '@/types/Service';
 
 function NavBar() {
   const { selectedServices } = useContext(ServiceContext);

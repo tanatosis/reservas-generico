@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
-import NavBar from "./components/NavBar/Navbar";
-import ServiceCatalog from "./components/ServiceCatalog/ServiceCatalog";
-import { ServiceContext } from "./ServiceContext/ServiceContext";
+import NavBar from "@/components/NavBar/Navbar";
+import ServiceCatalog from "@/components/ServiceCatalog/ServiceCatalog";
+import { ServiceContext } from "@/ServiceContext/ServiceContext";
 
 function App() {
   const [selectedServices, setSelectedServices] = useState([]);

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import {
   Box,
   List,
@@ -11,7 +11,8 @@ import {
 } from "@mui/material";
 
 import Grid from "@mui/material/Grid";
-import { ServiceContext } from "../../ServiceContext/ServiceContext";
+import { ServiceContext } from "@/ServiceContext/ServiceContext";
+import { Service } from "@/types/Service";
 
 /* --------------------------- ejemplo de datos --------------------------- */
 const categories = [
@@ -77,14 +78,6 @@ const services: Service[] = [
   },
 ];
 
-type Service = {
-  id: number;
-  category: string;
-  title: string;
-  duration: number;
-  price: number;
-  description: string;
-};
 
 /* ---------------------------- componente UI ----------------------------- */
 export default function ServiceCatalog() {
