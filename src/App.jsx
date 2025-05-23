@@ -5,7 +5,7 @@ import { ServiceContext } from "./ServiceContext/ServiceContext";
 
 function App() {
   const [selectedServices, setSelectedServices] = useState([]);
-  const value = useMemo(() => ({ selectedServices, setSelectedServices }), [selectedServices]);
+  const value = useMemo(() => ({ selectedServices, setSelectedServices }), [selectedServices, setSelectedServices]);
 
   return (
       <ServiceContext.Provider value={value}>

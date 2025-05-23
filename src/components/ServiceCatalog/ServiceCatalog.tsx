@@ -26,7 +26,7 @@ const categories = [
   "Solo manos",
 ];
 
-const services = [
+const services: Service[] = [
   {
     id: 1,
     category: "Limpieza Facial",
@@ -77,11 +77,20 @@ const services = [
   },
 ];
 
+type Service = {
+  id: number;
+  category: string;
+  title: string;
+  duration: number;
+  price: number;
+  description: string;
+};
+
 /* ---------------------------- componente UI ----------------------------- */
 export default function ServiceCatalog() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
-// Ahora creamos un hook que controla los servicios seleccionados con el boton  de Agendar Servicio
-  const {selectedServices, setSelectedServices} = useContext(ServiceContext);
+  // Ahora creamos un hook que controla los servicios seleccionados con el boton  de Agendar Servicio
+  const { selectedServices, setSelectedServices } = useContext(ServiceContext);
 
 
 
@@ -91,7 +100,7 @@ export default function ServiceCatalog() {
       : services.filter((s) => s.category === selectedCategory);
 
 // esto no se entiende
-  const handleServiceClick = (service) => {
+  const handleServiceClick = (service: Service) => {
     if (selectedServices.includes(service)) {
       setSelectedServices(selectedServices.filter((s) => s !== service));
     } else {
