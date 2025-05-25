@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import NavBar from "@/components/NavBar/Navbar";
+import NavBar from "@/components/NavBar/NavBar";
 import ServiceCatalog from "@/components/ServiceCatalog/ServiceCatalog";
 import { ServiceContext } from "@/ServiceContext/ServiceContext";
 
