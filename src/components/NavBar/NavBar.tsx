@@ -61,7 +61,7 @@ function NavBar() {
           <Button color="inherit">Mi cuenta</Button>
         </Container>
         <Badge
-          badgeContent={stored.length}
+//contador pendiente          badgeContent={stored.length}
           color="secondary"
           onClick={carritoHandler}
           id="basic-button"
