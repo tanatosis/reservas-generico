@@ -12,6 +12,8 @@ import {
   Card,
 } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import TextField from "@mui/material/TextField";
+import SearchIcon from "@mui/icons-material/Search";
 import { ServiceContext } from "@/ServiceContext/ServiceContext";
 import { getItem } from "@/utils/localStorage";
 
@@ -53,13 +55,36 @@ function NavBar() {
       <Toolbar>
         <Typography variant="h6">Peluquería Genérica</Typography>
         <Box sx={{ flexGrow: 1 }} />
-        <Container>
+        
+                <Container sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Button color="inherit">Inicio</Button>
           <Button color="inherit">Servicios</Button>
           <Button color="inherit">Contacto</Button>
           <Button color="inherit">Carrito</Button>
           <Button color="inherit">Mi cuenta</Button>
+                    <Box sx={{ display: 'flex', alignItems: 'center', marginLeft: 2 }}>
+            <TextField
+              size="small"
+              variant="outlined"
+              placeholder="Buscar servicio..."
+              InputProps={{
+                startAdornment: <SearchIcon sx={{ color: '#555555', marginRight: '4px' }} />,
+                sx: {
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid #E1E5E9',
+                  borderRadius: '4px',
+                  paddingLeft: '4px'
+                }
+              }}
+              sx={{
+                width: { xs: 120, sm: 200, md: 300 }
+              }}
+            />
+          </Box>
+
+          
         </Container>
+        
         <Badge
 //contador pendiente          badgeContent={stored.length}
           color="secondary"
