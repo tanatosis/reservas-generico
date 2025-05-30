@@ -1,0 +1,7 @@
+{
+  "components": [
+    "./src/components/NavBar.tsx",
+    "./src/components/ServiceCatalog/ServiceCatalog.tsx",
+    "./src/components/ServiceContext/ServiceContext.tsx"
+  ]
+}
